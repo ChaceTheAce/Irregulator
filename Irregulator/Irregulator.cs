@@ -68,7 +68,12 @@ namespace Irregulator
                 var weapons = valid.Where(row => weaponCats.Contains((byte)row["weaponCategory"].Value));
                 RandomizeSome(weapons,
                     "wepmotionCategory", "guardmotionCategory", "spAtkCategory", "wepmotionOneHandId", "wepmotionBothHandId", "swordArtId", "wepAbsorpPosId");
+				
+				var shields = valid.Where(row => shieldCats.Contains((byte)row["weaponCategory"].Value));
+                RandomizeSome(weapons,
+                    "wepmotionCategory", "guardmotionCategory", "spAtkCategory", "wepmotionOneHandId", "wepmotionBothHandId", "swordArtId", "wepAbsorpPosId");
 
+	
                 var bows = valid.Where(row => bowCats.Contains((byte)row["weaponCategory"].Value));
                 RandomizeSome(bows,
                     "wepmotionCategory", "guardmotionCategory", "spAtkCategory", "wepmotionOneHandId", "wepmotionBothHandId", "swordArtId", "wepAbsorpPosId");
@@ -127,7 +132,8 @@ namespace Irregulator
             }
         }
 
-        private static byte[] weaponCats = { 0, 1, 2, 3, 4, 5, 6, 7, 9, 12 };
+        private static byte[] weaponCats = { 0, 1, 2, 3, 4, 5, 6, 7, 9};
+        private static byte[] shieldCats = { 12 };
         private static byte[] bowCats = { 10, 11 };
         private static byte[] ammoCats = { 13, 14 };
         private static byte[] catalystCats = { 8 };
