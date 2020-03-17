@@ -61,9 +61,9 @@ namespace Irregulator
                     "residentSpEffectId0", "residentSpEffectId1", "residentSpEffectId2", "parryDamageLife", "atkBasePhysics", "atkBaseMagic", "atkBaseFire", "atkBaseThunder", "atkBaseDark",
                     "atkBaseStamina", "saWeaponDamage", "saDurability", "guardAngle", "staminaGuardDef", "properStrength", "properAgility", "properMagic", "properFaith", "correctLuck");
                 for (int i = 0; i < 24; i++)
-                    RandomizeOne<int>(valid, "HitSfx" + i);
+                    RandomizeOne<int>(valid, "HitSfx" + i, true);
                 for (int i = 0; i < 8; i++)
-                    RandomizeOne<int>(valid, "weaponVfx" + i);
+                    RandomizeOne<int>(valid, "weaponVfx" + i, true);
 
                 var weapons = valid.Where(row => weaponCats.Contains((byte)row["weaponCategory"].Value));
                 RandomizeSome(weapons,
@@ -81,6 +81,9 @@ namespace Irregulator
                 var catalysts = valid.Where(row => catalystCats.Contains((byte)row["weaponCategory"].Value));
                 RandomizeSome(catalysts,
                     "wepmotionCategory", "guardmotionCategory", "spAtkCategory", "wepmotionOneHandId", "wepmotionBothHandId", "swordArtId", "wepAbsorpPosId");
+
+                // Randomizes the effects of reinforcing
+                // RandomizeAll(paramDict["ReinforceParamWeapon"].Rows);
             }
 
             if (doSpells)
@@ -113,22 +116,56 @@ namespace Irregulator
 
             if (doOthers)
             {
-                //RandomizeAll(paramDict["AtkParam_Npc"].Rows);
-                //RandomizeAll(paramDict["AtkParam_Pc"].Rows);
-                //RandomizeAll(paramDict["AttackElementCorrectParam"].Rows);
-                //RandomizeAll(paramDict["BehaviorParam"].Rows);
-                //RandomizeAll(paramDict["BehaviorParam_PC"].Rows);
-                RandomizeAll(paramDict["DecalParam"].Rows);
-                //RandomizeAll(paramDict["HitEffectSfxConceptParam"].Rows);
-                //RandomizeAll(paramDict["ModelSfxParam"].Rows);
-                //RandomizeAll(paramDict["NpcThinkParam"].Rows);
-                //RandomizeAll(paramDict["ObjectMaterialSfxParam"].Rows);
-                RandomizeAll(paramDict["PhantomParam"].Rows);
-                //RandomizeAll(paramDict["SwordArtsParam"].Rows);
-                //RandomizeAll(paramDict["UpperArmParam"].Rows);
-                //RandomizeAll(paramDict["WepAbsorpPosParam"].Rows);
-                RandomizeAll(paramDict["WetAspectParam"].Rows);
-                RandomizeAll(paramDict["Wind"].Rows);
+                //TODO:
+                //SHIELDS AS WEAPONS
+                //SWAMP NO HURT ENEMY
+                //spEffectParam, row 4001-4004, set effectTargetFriend to no
+                //TEXTURE
+                RandomizeAll(paramDict["DecalParam"].Rows); // Like bloody footprints?
+                RandomizeAll(paramDict["PhantomParam"].Rows); // Phantom Texture
+                RandomizeAll(paramDict["WetAspectParam"].Rows); // Liquid Colors
+                RandomizeAll(paramDict["Wind"].Rows); // Wind directions and strengths?
+                RandomizeAll(paramDict["HitEffectSfxParam"].Rows);
+                RandomizeAll(paramDict["ObjectMaterialSfxParam"].Rows);
+                RandomizeAll(paramDict["HitEffectSfxConceptParam"].Rows);
+                RandomizeAll(paramDict["ModelSfxParam"].Rows);
+                //SOUND
+                RandomizeAll(paramDict["FootSfxParam"].Rows);
+                RandomizeAll(paramDict["HitEffectSeParam"].Rows);
+                RandomizeAll(paramDict["SeMaterialConvertParam"].Rows); // Ground Parameters
+
+
+                //BALANCE
+                RandomizeAll(paramDict["HitMtrlParam"].Rows); // Ground type (i.e. swamp ground)
+                //RandomizeAll(paramDict["BehaviorParam"].Rows, true);
+
+                // This block randomizes enemy attack effects
+                // but we can only randomize between attack entries with the same number of attacks
+                String[] some = {"KnockbackDist", "HitStopTime", "spEffect0", "spEffect1", "spEffect2", "spEffect3", "spEffect4",
+                                 "AtkPhys", "AtkMag", "AtkFire", "AtkThun", "AtkStam", "GuardAtkRate", "GuardBreakRate", "AtkSuperArmor",
+                                 "AtkThrowEscape", "damageLevel", "mapHitType", "AtkAttribute", "atkPowForSfxSe", "atkDirForSfxSe"};
+                Console.Out.WriteLine(some);
+
+                PARAM64 param = paramDict["AtkParam_Npc"];
+                List<long> oldIDs = new List<long>();
+                oldIDs.Add(0);
+                for (int i = 3; i >= 0; i--)
+                {
+                    String toCheck = "Hit" + i + "_Radius";
+
+                    var xhit = param.Rows.Where(row => (float)row[toCheck].Value > 0 && !oldIDs.Contains(row.ID));
+                    RandomizeSome(xhit, some);
+                    
+                    List<long> newIDs = xhit.Select(row => (long)row.ID).ToList();
+                    Console.Out.WriteLine("Randomized " + newIDs.Count + " attacks with " + (i+1) + " hits.");
+                    
+                    oldIDs.AddRange(newIDs);
+                }
+
+
+                /* IDEAS
+                 * Randomize npc attack animations (BehaviorParam? AtkParam_NPC?)
+                 * END IDEAS */
             }
         }
 
@@ -169,6 +206,7 @@ namespace Irregulator
         {
             foreach (string paramName in paramNames)
             {
+                Console.Out.WriteLine(paramName);
                 PARAM64.Cell cell = rows.First().Cells.Find(c => c.Name == paramName);
 
                 if (cell.Type == "u8" || cell.Type == "x8")

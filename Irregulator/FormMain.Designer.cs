@@ -37,11 +37,6 @@
             this.btnRandomize = new System.Windows.Forms.Button();
             this.btnRestore = new System.Windows.Forms.Button();
             this.gbxOptions = new System.Windows.Forms.GroupBox();
-            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.txtStatus = new System.Windows.Forms.TextBox();
-            this.llbUpdate = new System.Windows.Forms.LinkLabel();
-            this.lblUpdate = new System.Windows.Forms.Label();
-            this.fbdGameDir = new System.Windows.Forms.FolderBrowserDialog();
             this.cbxBulletsPlus = new System.Windows.Forms.CheckBox();
             this.cbxOther = new System.Windows.Forms.CheckBox();
             this.cbxHumans = new System.Windows.Forms.CheckBox();
@@ -52,6 +47,11 @@
             this.cbxWeapons = new System.Windows.Forms.CheckBox();
             this.cbxArmor = new System.Windows.Forms.CheckBox();
             this.txtSeed = new System.Windows.Forms.TextBox();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.txtStatus = new System.Windows.Forms.TextBox();
+            this.llbUpdate = new System.Windows.Forms.LinkLabel();
+            this.lblUpdate = new System.Windows.Forms.Label();
+            this.fbdGameDir = new System.Windows.Forms.FolderBrowserDialog();
             this.txtGameDir = new System.Windows.Forms.TextBox();
             lblGameDir = new System.Windows.Forms.Label();
             lblSeed = new System.Windows.Forms.Label();
@@ -138,49 +138,10 @@
             this.gbxOptions.Controls.Add(lblSeed);
             this.gbxOptions.Location = new System.Drawing.Point(12, 80);
             this.gbxOptions.Name = "gbxOptions";
-            this.gbxOptions.Size = new System.Drawing.Size(567, 250);
+            this.gbxOptions.Size = new System.Drawing.Size(567, 272);
             this.gbxOptions.TabIndex = 6;
             this.gbxOptions.TabStop = false;
             this.gbxOptions.Text = "Options";
-            // 
-            // txtStatus
-            // 
-            this.txtStatus.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtStatus.Location = new System.Drawing.Point(12, 53);
-            this.txtStatus.Name = "txtStatus";
-            this.txtStatus.ReadOnly = true;
-            this.txtStatus.Size = new System.Drawing.Size(243, 20);
-            this.txtStatus.TabIndex = 7;
-            // 
-            // llbUpdate
-            // 
-            this.llbUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.llbUpdate.Location = new System.Drawing.Point(129, 339);
-            this.llbUpdate.Name = "llbUpdate";
-            this.llbUpdate.Size = new System.Drawing.Size(450, 13);
-            this.llbUpdate.TabIndex = 38;
-            this.llbUpdate.TabStop = true;
-            this.llbUpdate.Text = "New version available!";
-            this.llbUpdate.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            this.llbUpdate.Visible = false;
-            this.llbUpdate.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llbUpdate_LinkClicked);
-            // 
-            // lblUpdate
-            // 
-            this.lblUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblUpdate.Location = new System.Drawing.Point(126, 339);
-            this.lblUpdate.Name = "lblUpdate";
-            this.lblUpdate.Size = new System.Drawing.Size(453, 13);
-            this.lblUpdate.TabIndex = 37;
-            this.lblUpdate.Text = "Checking for update...";
-            this.lblUpdate.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // fbdGameDir
-            // 
-            this.fbdGameDir.Description = "Select your Dark Souls III install directory...";
-            this.fbdGameDir.RootFolder = System.Environment.SpecialFolder.MyComputer;
-            this.fbdGameDir.ShowNewFolderButton = false;
             // 
             // cbxBulletsPlus
             // 
@@ -320,6 +281,45 @@
             this.txtSeed.Text = global::Irregulator.Properties.Settings.Default.Seed;
             this.toolTip1.SetToolTip(this.txtSeed, "Sharing a seed lets you and another player get the same result from randomization" +
         ".");
+            // 
+            // txtStatus
+            // 
+            this.txtStatus.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtStatus.Location = new System.Drawing.Point(12, 53);
+            this.txtStatus.Name = "txtStatus";
+            this.txtStatus.ReadOnly = true;
+            this.txtStatus.Size = new System.Drawing.Size(243, 20);
+            this.txtStatus.TabIndex = 7;
+            // 
+            // llbUpdate
+            // 
+            this.llbUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.llbUpdate.Location = new System.Drawing.Point(129, 339);
+            this.llbUpdate.Name = "llbUpdate";
+            this.llbUpdate.Size = new System.Drawing.Size(450, 13);
+            this.llbUpdate.TabIndex = 38;
+            this.llbUpdate.TabStop = true;
+            this.llbUpdate.Text = "New version available!";
+            this.llbUpdate.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.llbUpdate.Visible = false;
+            this.llbUpdate.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llbUpdate_LinkClicked);
+            // 
+            // lblUpdate
+            // 
+            this.lblUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblUpdate.Location = new System.Drawing.Point(126, 339);
+            this.lblUpdate.Name = "lblUpdate";
+            this.lblUpdate.Size = new System.Drawing.Size(453, 13);
+            this.lblUpdate.TabIndex = 37;
+            this.lblUpdate.Text = "Checking for update...";
+            this.lblUpdate.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // fbdGameDir
+            // 
+            this.fbdGameDir.Description = "Select your Dark Souls III install directory...";
+            this.fbdGameDir.RootFolder = System.Environment.SpecialFolder.MyComputer;
+            this.fbdGameDir.ShowNewFolderButton = false;
             // 
             // txtGameDir
             // 
