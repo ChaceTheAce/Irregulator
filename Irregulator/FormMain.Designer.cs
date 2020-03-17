@@ -53,6 +53,7 @@
             this.lblUpdate = new System.Windows.Forms.Label();
             this.fbdGameDir = new System.Windows.Forms.FolderBrowserDialog();
             this.txtGameDir = new System.Windows.Forms.TextBox();
+            this.cbxTesting = new System.Windows.Forms.CheckBox();
             lblGameDir = new System.Windows.Forms.Label();
             lblSeed = new System.Windows.Forms.Label();
             this.gbxOptions.SuspendLayout();
@@ -125,6 +126,7 @@
             this.gbxOptions.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.gbxOptions.Controls.Add(this.cbxTesting);
             this.gbxOptions.Controls.Add(this.cbxBulletsPlus);
             this.gbxOptions.Controls.Add(this.cbxOther);
             this.gbxOptions.Controls.Add(this.cbxHumans);
@@ -138,7 +140,7 @@
             this.gbxOptions.Controls.Add(lblSeed);
             this.gbxOptions.Location = new System.Drawing.Point(12, 80);
             this.gbxOptions.Name = "gbxOptions";
-            this.gbxOptions.Size = new System.Drawing.Size(567, 272);
+            this.gbxOptions.Size = new System.Drawing.Size(567, 300);
             this.gbxOptions.TabIndex = 6;
             this.gbxOptions.TabStop = false;
             this.gbxOptions.Text = "Options";
@@ -295,7 +297,7 @@
             // llbUpdate
             // 
             this.llbUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.llbUpdate.Location = new System.Drawing.Point(129, 339);
+            this.llbUpdate.Location = new System.Drawing.Point(129, 367);
             this.llbUpdate.Name = "llbUpdate";
             this.llbUpdate.Size = new System.Drawing.Size(450, 13);
             this.llbUpdate.TabIndex = 38;
@@ -308,7 +310,7 @@
             // lblUpdate
             // 
             this.lblUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblUpdate.Location = new System.Drawing.Point(126, 339);
+            this.lblUpdate.Location = new System.Drawing.Point(126, 367);
             this.lblUpdate.Name = "lblUpdate";
             this.lblUpdate.Size = new System.Drawing.Size(453, 13);
             this.lblUpdate.TabIndex = 37;
@@ -332,11 +334,21 @@
             this.txtGameDir.TabIndex = 1;
             this.txtGameDir.Text = global::Irregulator.Properties.Settings.Default.GameDir;
             // 
+            // cbxTesting
+            // 
+            this.cbxTesting.AutoSize = true;
+            this.cbxTesting.Location = new System.Drawing.Point(6, 242);
+            this.cbxTesting.Name = "cbxTesting";
+            this.cbxTesting.Size = new System.Drawing.Size(61, 17);
+            this.cbxTesting.TabIndex = 12;
+            this.cbxTesting.Text = "Testing";
+            this.cbxTesting.UseVisualStyleBackColor = true;
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(591, 368);
+            this.ClientSize = new System.Drawing.Size(591, 396);
             this.Controls.Add(this.llbUpdate);
             this.Controls.Add(this.lblUpdate);
             this.Controls.Add(this.txtStatus);
@@ -382,6 +394,7 @@
         private System.Windows.Forms.GroupBox gbxOptions;
         private System.Windows.Forms.FolderBrowserDialog fbdGameDir;
         private System.Windows.Forms.CheckBox cbxBulletsPlus;
+        private System.Windows.Forms.CheckBox cbxTesting;
     }
 }
 
