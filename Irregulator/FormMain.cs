@@ -182,9 +182,10 @@ namespace Irregulator
 
             try
             {
+                bool[] weaponOptions = { radDefault.Checked, radBalanced.Checked, radNoShields.Checked};
                 Irregulator irreg = new Irregulator(txtSeed.Text);
                 irreg.Randomize(paramDict,
-                    cbxArmor.Checked, cbxWeapons.Checked, cbxRings.Checked, cbxGoods.Checked,
+                    cbxArmor.Checked, cbxWeapons.Checked, weaponOptions, cbxRings.Checked, cbxGoods.Checked,
                     cbxSpells.Checked, cbxBullets.Checked, cbxBulletsPlus.Checked, cbxHumans.Checked, cbxOther.Checked,
                     cbxTesting.Checked);
             }
@@ -230,6 +231,11 @@ namespace Irregulator
             btnRestore.Enabled = enable;
             btnRandomize.Enabled = enable;
             gbxOptions.Enabled = enable;
+        }
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -37,6 +37,12 @@
             this.btnRandomize = new System.Windows.Forms.Button();
             this.btnRestore = new System.Windows.Forms.Button();
             this.gbxOptions = new System.Windows.Forms.GroupBox();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.txtStatus = new System.Windows.Forms.TextBox();
+            this.llbUpdate = new System.Windows.Forms.LinkLabel();
+            this.lblUpdate = new System.Windows.Forms.Label();
+            this.fbdGameDir = new System.Windows.Forms.FolderBrowserDialog();
+            this.cbxTesting = new System.Windows.Forms.CheckBox();
             this.cbxBulletsPlus = new System.Windows.Forms.CheckBox();
             this.cbxOther = new System.Windows.Forms.CheckBox();
             this.cbxHumans = new System.Windows.Forms.CheckBox();
@@ -44,19 +50,18 @@
             this.cbxSpells = new System.Windows.Forms.CheckBox();
             this.cbxGoods = new System.Windows.Forms.CheckBox();
             this.cbxRings = new System.Windows.Forms.CheckBox();
-            this.cbxWeapons = new System.Windows.Forms.CheckBox();
             this.cbxArmor = new System.Windows.Forms.CheckBox();
             this.txtSeed = new System.Windows.Forms.TextBox();
-            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.txtStatus = new System.Windows.Forms.TextBox();
-            this.llbUpdate = new System.Windows.Forms.LinkLabel();
-            this.lblUpdate = new System.Windows.Forms.Label();
-            this.fbdGameDir = new System.Windows.Forms.FolderBrowserDialog();
             this.txtGameDir = new System.Windows.Forms.TextBox();
-            this.cbxTesting = new System.Windows.Forms.CheckBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.cbxWeapons = new System.Windows.Forms.CheckBox();
+            this.radDefault = new System.Windows.Forms.RadioButton();
+            this.radBalanced = new System.Windows.Forms.RadioButton();
+            this.radNoShields = new System.Windows.Forms.RadioButton();
             lblGameDir = new System.Windows.Forms.Label();
             lblSeed = new System.Windows.Forms.Label();
             this.gbxOptions.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblGameDir
@@ -126,6 +131,7 @@
             this.gbxOptions.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.gbxOptions.Controls.Add(this.panel1);
             this.gbxOptions.Controls.Add(this.cbxTesting);
             this.gbxOptions.Controls.Add(this.cbxBulletsPlus);
             this.gbxOptions.Controls.Add(this.cbxOther);
@@ -134,7 +140,6 @@
             this.gbxOptions.Controls.Add(this.cbxSpells);
             this.gbxOptions.Controls.Add(this.cbxGoods);
             this.gbxOptions.Controls.Add(this.cbxRings);
-            this.gbxOptions.Controls.Add(this.cbxWeapons);
             this.gbxOptions.Controls.Add(this.cbxArmor);
             this.gbxOptions.Controls.Add(this.txtSeed);
             this.gbxOptions.Controls.Add(lblSeed);
@@ -144,6 +149,55 @@
             this.gbxOptions.TabIndex = 6;
             this.gbxOptions.TabStop = false;
             this.gbxOptions.Text = "Options";
+            // 
+            // txtStatus
+            // 
+            this.txtStatus.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtStatus.Location = new System.Drawing.Point(12, 53);
+            this.txtStatus.Name = "txtStatus";
+            this.txtStatus.ReadOnly = true;
+            this.txtStatus.Size = new System.Drawing.Size(243, 20);
+            this.txtStatus.TabIndex = 7;
+            // 
+            // llbUpdate
+            // 
+            this.llbUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.llbUpdate.Location = new System.Drawing.Point(129, 367);
+            this.llbUpdate.Name = "llbUpdate";
+            this.llbUpdate.Size = new System.Drawing.Size(450, 13);
+            this.llbUpdate.TabIndex = 38;
+            this.llbUpdate.TabStop = true;
+            this.llbUpdate.Text = "New version available!";
+            this.llbUpdate.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.llbUpdate.Visible = false;
+            this.llbUpdate.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llbUpdate_LinkClicked);
+            // 
+            // lblUpdate
+            // 
+            this.lblUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblUpdate.Location = new System.Drawing.Point(126, 367);
+            this.lblUpdate.Name = "lblUpdate";
+            this.lblUpdate.Size = new System.Drawing.Size(453, 13);
+            this.lblUpdate.TabIndex = 37;
+            this.lblUpdate.Text = "Checking for update...";
+            this.lblUpdate.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // fbdGameDir
+            // 
+            this.fbdGameDir.Description = "Select your Dark Souls III install directory...";
+            this.fbdGameDir.RootFolder = System.Environment.SpecialFolder.MyComputer;
+            this.fbdGameDir.ShowNewFolderButton = false;
+            // 
+            // cbxTesting
+            // 
+            this.cbxTesting.AutoSize = true;
+            this.cbxTesting.Location = new System.Drawing.Point(6, 242);
+            this.cbxTesting.Name = "cbxTesting";
+            this.cbxTesting.Size = new System.Drawing.Size(61, 17);
+            this.cbxTesting.TabIndex = 12;
+            this.cbxTesting.Text = "Testing";
+            this.cbxTesting.UseVisualStyleBackColor = true;
             // 
             // cbxBulletsPlus
             // 
@@ -243,20 +297,6 @@
             this.toolTip1.SetToolTip(this.cbxRings, "Randomizes ring effects");
             this.cbxRings.UseVisualStyleBackColor = true;
             // 
-            // cbxWeapons
-            // 
-            this.cbxWeapons.AutoSize = true;
-            this.cbxWeapons.Checked = global::Irregulator.Properties.Settings.Default.DoWeapons;
-            this.cbxWeapons.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbxWeapons.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::Irregulator.Properties.Settings.Default, "DoWeapons", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cbxWeapons.Location = new System.Drawing.Point(6, 81);
-            this.cbxWeapons.Name = "cbxWeapons";
-            this.cbxWeapons.Size = new System.Drawing.Size(72, 17);
-            this.cbxWeapons.TabIndex = 3;
-            this.cbxWeapons.Text = "Weapons";
-            this.toolTip1.SetToolTip(this.cbxWeapons, "Randomizes weapon movesets and stats");
-            this.cbxWeapons.UseVisualStyleBackColor = true;
-            // 
             // cbxArmor
             // 
             this.cbxArmor.AutoSize = true;
@@ -284,45 +324,6 @@
             this.toolTip1.SetToolTip(this.txtSeed, "Sharing a seed lets you and another player get the same result from randomization" +
         ".");
             // 
-            // txtStatus
-            // 
-            this.txtStatus.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtStatus.Location = new System.Drawing.Point(12, 53);
-            this.txtStatus.Name = "txtStatus";
-            this.txtStatus.ReadOnly = true;
-            this.txtStatus.Size = new System.Drawing.Size(243, 20);
-            this.txtStatus.TabIndex = 7;
-            // 
-            // llbUpdate
-            // 
-            this.llbUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.llbUpdate.Location = new System.Drawing.Point(129, 367);
-            this.llbUpdate.Name = "llbUpdate";
-            this.llbUpdate.Size = new System.Drawing.Size(450, 13);
-            this.llbUpdate.TabIndex = 38;
-            this.llbUpdate.TabStop = true;
-            this.llbUpdate.Text = "New version available!";
-            this.llbUpdate.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            this.llbUpdate.Visible = false;
-            this.llbUpdate.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llbUpdate_LinkClicked);
-            // 
-            // lblUpdate
-            // 
-            this.lblUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblUpdate.Location = new System.Drawing.Point(126, 367);
-            this.lblUpdate.Name = "lblUpdate";
-            this.lblUpdate.Size = new System.Drawing.Size(453, 13);
-            this.lblUpdate.TabIndex = 37;
-            this.lblUpdate.Text = "Checking for update...";
-            this.lblUpdate.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // fbdGameDir
-            // 
-            this.fbdGameDir.Description = "Select your Dark Souls III install directory...";
-            this.fbdGameDir.RootFolder = System.Environment.SpecialFolder.MyComputer;
-            this.fbdGameDir.ShowNewFolderButton = false;
-            // 
             // txtGameDir
             // 
             this.txtGameDir.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -334,15 +335,66 @@
             this.txtGameDir.TabIndex = 1;
             this.txtGameDir.Text = global::Irregulator.Properties.Settings.Default.GameDir;
             // 
-            // cbxTesting
+            // panel1
             // 
-            this.cbxTesting.AutoSize = true;
-            this.cbxTesting.Location = new System.Drawing.Point(6, 242);
-            this.cbxTesting.Name = "cbxTesting";
-            this.cbxTesting.Size = new System.Drawing.Size(61, 17);
-            this.cbxTesting.TabIndex = 12;
-            this.cbxTesting.Text = "Testing";
-            this.cbxTesting.UseVisualStyleBackColor = true;
+            this.panel1.Controls.Add(this.radNoShields);
+            this.panel1.Controls.Add(this.radBalanced);
+            this.panel1.Controls.Add(this.radDefault);
+            this.panel1.Controls.Add(this.cbxWeapons);
+            this.panel1.Location = new System.Drawing.Point(0, 81);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(567, 17);
+            this.panel1.TabIndex = 40;
+            // 
+            // cbxWeapons
+            // 
+            this.cbxWeapons.AutoSize = true;
+            this.cbxWeapons.Checked = global::Irregulator.Properties.Settings.Default.DoWeapons;
+            this.cbxWeapons.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbxWeapons.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::Irregulator.Properties.Settings.Default, "DoWeapons", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cbxWeapons.Location = new System.Drawing.Point(6, 0);
+            this.cbxWeapons.Name = "cbxWeapons";
+            this.cbxWeapons.Size = new System.Drawing.Size(72, 17);
+            this.cbxWeapons.TabIndex = 4;
+            this.cbxWeapons.Text = "Weapons";
+            this.toolTip1.SetToolTip(this.cbxWeapons, "Randomizes weapon movesets and stats");
+            this.cbxWeapons.UseVisualStyleBackColor = true;
+            // 
+            // radDefault
+            // 
+            this.radDefault.AutoSize = true;
+            this.radDefault.Checked = true;
+            this.radDefault.Location = new System.Drawing.Point(86, 0);
+            this.radDefault.Name = "radDefault";
+            this.radDefault.Size = new System.Drawing.Size(59, 17);
+            this.radDefault.TabIndex = 40;
+            this.radDefault.TabStop = true;
+            this.radDefault.Text = "Default";
+            this.toolTip1.SetToolTip(this.radDefault, "The normal random shuffle, bias towards shield moveset.");
+            this.radDefault.UseVisualStyleBackColor = true;
+            this.radDefault.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
+            // 
+            // radBalanced
+            // 
+            this.radBalanced.AutoSize = true;
+            this.radBalanced.Location = new System.Drawing.Point(177, 0);
+            this.radBalanced.Name = "radBalanced";
+            this.radBalanced.Size = new System.Drawing.Size(70, 17);
+            this.radBalanced.TabIndex = 41;
+            this.radBalanced.Text = "Balanced";
+            this.toolTip1.SetToolTip(this.radBalanced, "Makes all movesets equally likely, reducing the number of sword shields.");
+            this.radBalanced.UseVisualStyleBackColor = true;
+            // 
+            // radNoShields
+            // 
+            this.radNoShields.AutoSize = true;
+            this.radNoShields.Location = new System.Drawing.Point(268, 0);
+            this.radNoShields.Name = "radNoShields";
+            this.radNoShields.Size = new System.Drawing.Size(76, 17);
+            this.radNoShields.TabIndex = 42;
+            this.radNoShields.Text = "No Shields";
+            this.toolTip1.SetToolTip(this.radNoShields, "Prevents melee weapons from having shield movesets and vice versa.");
+            this.radNoShields.UseVisualStyleBackColor = true;
             // 
             // FormMain
             // 
@@ -367,6 +419,8 @@
             this.Load += new System.EventHandler(this.FormMain_Load);
             this.gbxOptions.ResumeLayout(false);
             this.gbxOptions.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -386,7 +440,6 @@
         private System.Windows.Forms.CheckBox cbxSpells;
         private System.Windows.Forms.CheckBox cbxGoods;
         private System.Windows.Forms.CheckBox cbxRings;
-        private System.Windows.Forms.CheckBox cbxWeapons;
         private System.Windows.Forms.CheckBox cbxArmor;
         private System.Windows.Forms.TextBox txtStatus;
         private System.Windows.Forms.LinkLabel llbUpdate;
@@ -395,6 +448,11 @@
         private System.Windows.Forms.FolderBrowserDialog fbdGameDir;
         private System.Windows.Forms.CheckBox cbxBulletsPlus;
         private System.Windows.Forms.CheckBox cbxTesting;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.RadioButton radNoShields;
+        private System.Windows.Forms.RadioButton radBalanced;
+        private System.Windows.Forms.RadioButton radDefault;
+        private System.Windows.Forms.CheckBox cbxWeapons;
     }
 }
 
